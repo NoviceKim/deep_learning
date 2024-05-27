@@ -44,7 +44,7 @@
 - 퍼셉트론의 활성화 정도를 편향(bias)으로 조절할 수 있으며, 편향을 통해 어느 정도의 자극을 미리 주고 시작할 수 있다.
 - 뉴런이 활성화되기 위해 필요한 자극이 1,000이라고 가정하면, 500의 입력 값만 받아도 편향을 2로 주어 1,000으로 만들 수 있다.
 
-<div style='display: flex; width: 500px; margin-left: 20px;' style='margin-top: 10px;'>
+<div style='display: flex; width: 500px; margin-left: 20px; margin-top: 10px;'>
     <div style='width: 200px;'>
         <img src='./b_perceptron/images/perceptron02.png'>
     </div>
