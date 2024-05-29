@@ -494,7 +494,7 @@
 고정된 표준편차를 사용하는 것보다 이상치에 민감하지 않다.
 > - 활성화 함수가 ReLU일 경우, 층을 통과할수록 활성화 값이 고르지 못하게 되는 문제가 있기 때문에 출력층에서만 사용한다.
 > 
-> <div style='display: flex;' style='margin-left: 50px;'>
+<div style='display: flex;' style='margin-left: 50px;'>
     <div>
         <img src='./d_cnn/images/xavier01.png'>
     </div>
@@ -502,6 +502,8 @@
         <img src='./d_cnn/images/xavier02.png' style='margin-left: 50px;'>
     </div>
 </div>
+
+<br>
 
 > 2. 카이밍 히 초기화
 > - 고정된 표준편차를 사용하지 않고, 이전 층의 노드 수에 맞게 현재 층의 가중치를 초기화한다.
