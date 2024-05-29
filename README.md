@@ -586,7 +586,7 @@
   loss function의 결과를 어느 정도 제어할 수 있게 된다.
 - 보통 파라미터 수가 많은 Dense Layer(분류기)에서 많이 사용되며,  
   가중치보다는 loss function에 규제를 걸어 가중치를 감소시키는 게 원리다.
-- kernel_reguarlizer 파라미터에서 l1, l2 중 하나를 선택할 수 있다.
+- kernel_reguarlizer 파라미터에서 l1, l2 중 하나를 선택하여 사용한다.
 
 <img src='./d_cnn/images/regularization.png' width='450px'>
 
