@@ -592,3 +592,129 @@
 
 <br>
 
+---
+
+<br>
+
+### Data Augmentation (데이터 증강)
+- 이미지의 종류와 개수가 적으면, CNN 모델의 성능이 떨어질 수 밖에 없다.
+- 또한, 몇 안되는 이미지로 훈련시키면 과적합이 발생한다.
+- CNN 모델의 성능을 높이고 과적합을 개선하기 위해서는 이미지의 종류와 개수가 많아야 한다.  
+  즉, 데이터의 양을 늘려줘야 한다.
+- 이미지 데이터는 학습 데이터를 수집하여 양을 늘리기 쉽지 않기 때문에,  
+  원본 이미지를 변형시킴으로서 양을 늘릴 수 있다.
+- Data Augmentation을 통해 원본 이미지에 다양한 변형을 주면,  
+  학습에 사용하는 이미지 데이터를 늘리는 것과 유사한 효과를 볼 수 있다.
+- 원본 학습 이미지의 개수를 늘리는 것이 아닌, 매 학습마다 개별적으로 원본 이미지를 변형해서 학습을 수행한다.
+
+<img src='./e_augmentation/images/data_augmentation.png' width='400px' style='margin-left: 30px;'>
+
+<br>
+
+#### 공간 레벨 변형
+- 좌우 또는 상하 반전, 특정 영역만큼 확대, 축소, 회전 등으로 변형시킨다.
+
+<img src='./e_augmentation/images/spatial.png' width='500px'>
+
+<br>
+
+#### 픽셀 레벨 변형
+- 밝기, 명암, 채도, 색상 등을 변형시킨다.
+
+<img src='./e_augmentation/images/pixel.png' width='200px' style='margin-left: 10px;'>
+
+<br>
+
+---
+
+<br>
+
+### Pretrained Model (사전 훈련 모델)
+- 모델을 처음부터 학습시키려면 많은 시간을 소비해야 한다.
+- 이를 위해 대규모 학습 데이터를 기반으로 사전에 훈련된 모델을 활용한다.
+- 대규모 데이터 세트에서 훈련되고 저장된 데이터로서, 일반적으로 대규모 이미지 분류 작업에서 훈련된 것을 의미한다.
+- 입력 이미지는 대부분 244 * 244 크기지만, 모델 별로 차이가 있다.
+- 자동차나 고양이 등을 포함한 1000개의 클래스,  
+  총 약 1400만개의 이미지로 구성된 ImageNet 데이터 세트로 사전 훈련되었다.
+
+<img src='./f_pretrained_model/images/pretrained_model.png'>
+
+<br>
+
+### ImageNet Large Scale Visual Recognition Challenge (ILSVRC)
+- 2017년까지 대회가 주최되었으며, 이후에도 좋은 모델들이 등장했고 앞으로도 계속 등장할 것이다.
+- 메이저 플레이어들(구글, 마이크로소프트)이 만들어놓은 모델도 등장했다.
+
+<img src='./f_pretrained_model/images/ILSVRC.png'>
+
+<br>
+
+### VGGNet
+- 옥스포드 대학 연구팀이 만든 모델이다.
+- 2014년 ILSVRC에서 만든 GoogleNet이 1위. VGG는 2위를 차지했다.
+- GoogleNet의 오류율은 6.7%, VGG의 오류율은 7.3%로, 0.6%의 차이밖에 나지 않았다.
+- 간결하고 단순한 아키텍처임에도 불구하고, 1위인 GoogleNet과 큰 차이 없는 성능을 보여줘서 주목을 받게 되었다.
+- 네트워크 깊이에 따른 모델 성능의 영향에 대한 연구에 집중하여 만들어진 네트워크다.
+- 신경망을 깊게 만들수록 성능이 좋아지는 것을 확인했지만, 커널 사이즈가 클수록 이미지 사이즈가 급격하게 줄어들기 때문에  
+  층을 더 깊게 만들기 어렵고 파라미터 개수와 연산량도 더 많이 필요하다는 것을 알게 되었다.
+- 따라서 커널 크기를 3 * 3으로 단일화했으며, padding과 strides 값을 조정하여 단순한 네트워크를 구성하였다.
+- 2개의 3 * 3 커널은 5 * 5 커널 1개와 동일한 크기의 feature map을 생성하기 때문에  
+  3 * 3 커널로 연산하면 더 많은 층을 쌓을 수 있게 된다.
+
+<img src='./f_pretrained_model/images/VGG.png'>
+
+<br>
+
+### Inception Network (GoogleNet)
+
+- 여러 사이즈의 커널들을 한꺼번에 결합하는 방식을 사용하며, 이를 묶어서 Inception Module이라고 한다.
+- 여러 개의 Inception Module을 연속적으로 이어서 구상하고,  
+  여러 사이즈의 필터들이 서로 다른 공간을 기반으로 feature들을 추출한다.
+- Inception Module을 결합하면서, 보다 풍부한 Feature Extractor Layer를 구성하게 된다.
+- 하지만, 여러 사이즈의 커널을 결합하게 되면, Convolution 연산을 수행할 때  
+  파라미터 수가 증가하게 되고, 이는 과적합으로 이어진다.
+- 이를 극복하고자 연산을 수행하기 전에 1 * 1 Convolution을 적용해서 파라미터 수를 획기적으로 감소시킨다.
+- 1 * 1 Convolution을 적용하면, 입력 데이터의 특징을 함축적으로 표현하면서  
+  파라미터 수를 줄이는 차원 축소 역할을 수행하게 된다.
+
+<img src='./f_pretrained_model/images/GoogLeNet.png' width='550px' style='margin-left: 20px; margin-top: 0;'>
+<img src='./f_pretrained_model/images/Inception_Network.png' width='900px' style='margin-left: 20px; margin-top: 0;'>
+
+<br>
+
+#### 1 * 1 Convolution
+- 행과 열의 크기 변환 없이 채널 수를 조절할 수 있고, weight 및 비선형성을 추가하는 역할을 한다.
+- 행과 열의 사이즈를 줄이고 싶다면 Pooling을 사용하면 되고,  
+  채널 수만 줄이고 싶다면 1 * 1 Convolution을 사용하면 된다.
+
+<img src='./f_pretrained_model/images/1x1.png' width='800px'>
+
+<br>
+
+### ResNet (마이크로소프트)
+- VGG 이후 더 깊은 네트워크에 대한 연구가 많아졌지만,  
+  네트워크의 깊이가 깊어질수록 오히려 정확도가 떨어지는 문제가 있었다.
+- 이는 층이 깊어질수록 기울기가 계속해서 0에 가까워지는 Gradient Vanishing이 발생하기 때문이다.
+
+<img src='./f_pretrained_model/images/ResNet01.png' width='400px'>
+
+<br>
+
+- 이 문제를 해결하고자 층을 만들되, Input 데이터와 Output이 동일하게 나올 수 있도록 하는 층을 연구하기 시작했다.  
+  이를 함수로 나타내면 H(x) = x이다.
+- 하지만 활성화 함수를 통과한 값을 기존 Input과 동일하게 만드는 것은 굉장히 복잡했기 때문에  
+  H(x) = F(x) + x일 때, F(x)를 0으로 만드는 것에 포커스하게 되었다.
+- Input은 x이고, Model인 F(x)라는 일련의 과정을 거치면서, 자신인 x가 더해져서  
+  Output으로 F(x) + x가 나오는 구조가 된다.
+
+<img src='./f_pretrained_model/images/ResNet02.png' width='400px'>
+
+
+<img src='./f_pretrained_model/images/ResNet03.png' width='400px' style='margin: 30px; margin-left: 0;'>
+
+<br>
+
+---
+
+<br>
+
