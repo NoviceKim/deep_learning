@@ -718,3 +718,46 @@
 
 <br>
 
+### Transfer Learning (전이 학습)
+- 이미지 분류 문제를 해결하는 데 사용했던 모델을  
+  다른 데이터 세트 또는 다른 문제에 적용시켜 해결하는 것을 의미한다.
+- 즉, 사전 학습 모델을 다른 작업에 이용하는 것을 의미한다.
+- 사전 훈련 모델의 Convolutional Base 구조(Conv2D + Pooling)을 그대로 두고,  
+  분류기(Fully Connected Layer)를 붙여서 학습시킨다.
+
+<div style='display: flex; margin-left: -10px;'>
+    <div>
+        <img src='./f_pretrained_model/images/transfer_learning01.png' width='150px'>
+    </div>
+    <div>
+        <img src='./f_pretrained_model/images/fc.png' width='600px' style='margin-top: 10px; margin-left: 50px;'>
+    </div>
+</div>
+
+<br>
+
+- 사전 학습 모델의 용도를 변경하기 위한 층별 미세 조정(Fine Tuning)은  
+  데이터 세트의 크기와 유사성을 기반으로 고민하여 조정한다.
+- 2018년 FAIR(Facebook AI Research) 논문에서 실험을 통해 '전이 학습이 학습 속도 면에서 효과가 있다'라는 것을 밝혀냈다.
+
+<img src='./f_pretrained_model/images/transfer_learning02.png' width='400px' style='margin-left: -30px;'>
+
+<br>
+
+---
+
+<br>
+
+### Scaling Preprocess
+- 0 ~ 1, -1 ~ 1, z-score 변환 중 하나를 선택하여 범위를 축소하는 작업을 의미한다.
+- 사전 훈련 모델은 주로 TensorFlow와 PyTorch 프레임워크 방식을 사용한다.
+- TensorFlow는 -1 ~ 1, PyTorch는 z-score 방식으로 변환하는 것이 각 프레임워크의 전통이다.
+
+<img src='./f_pretrained_model/images/scaling.png' width='400px' style='margin-top: 20px;'>
+
+<br>
+
+---
+
+<br>
+
