@@ -748,7 +748,7 @@
 
 <br>
 
-### Scaling Preprocess
+### Scaling Preprocessing
 - 0 ~ 1, -1 ~ 1, z-score 변환 중 하나를 선택하여 범위를 축소하는 작업을 의미한다.
 - 사전 훈련 모델은 주로 TensorFlow와 PyTorch 프레임워크 방식을 사용한다.
 - TensorFlow는 -1 ~ 1, PyTorch는 z-score 방식으로 변환하는 것이 각 프레임워크의 전통이다.
