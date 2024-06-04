@@ -761,3 +761,23 @@
 
 <br>
 
+### Fine Tuning (미세 조정)
+- ImageNet으로 학습된 사전 훈련 모델을 다른 목적이나 용도로 활용할 때  
+  Feature Extractor(CNN)의 Weight(가중치)를 제어하기 위한 기법이다.
+- 특정 Layer들을 Freeze시켜 학습에서 제외시키고, Learning Rate를 점차 감소시켜 적용한다.
+- ImageNet과 유사한 데이터 세트거나, 클래스 별 데이터 건 수가 적을 경우 사용하는 것을 권장한다.
+- **학습시간 단축**이 주 목적으로, 위 상황이 아닌 경우에는 Sequence까지만 진행하는 것이 좋다.
+- Fine Tuning이 언제나 모델의 성능을 향상시키는 것은 아니기 때문에, 적절한 상황에 사용할 수 있어야 한다.
+- 먼저 Classification Layer(분류기)만 학습시킨 뒤 전체를 학습시키는 순서로 진행하며,  
+  이를 위해 fit을 최소 2번 이상 실행한다.
+- 층별로 Freeze 또는 Unfreeze 여부를 결정하기 위해 미세 조정을 진행할 때,  
+  학습률이 높으면 이전에 학습한 것을 잃을 위험이 있기 때문에 학습률은 작게 설정한다.
+
+<div style='display: flex;'>
+    <div>
+        <img src='./f_pretrained_model/images/transfer_learning03.png' width='600px'>
+    </div>
+    <div>
+        <img src='./f_pretrained_model/images/transfer_learning04.png' width='500px' style='margin-left: -80px;'>
+    </div>
+</div>
